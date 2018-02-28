@@ -1,0 +1,68 @@
+.card-carousel {
+    user-select: none;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.thumbnail-image {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.thumbnail-image > img {
+    width: 100%;
+    height: auto;
+    transition: all 250ms;
+}
+
+.thumbnail-image:hover > img, 
+.thumbnail-image.active > img {
+    opacity: 0.6;
+    box-shadow: 2px 2px 6px 1px rgba(0,0,0, 0.5);
+}
+
+.card-img {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.card-img > img {
+    display: block;
+    margin: 0 auto;
+}
+
+.actions {
+    font-size: 1.5em;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    margin-top: -20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #585858;
+}
+
+.actions > span {
+    cursor: pointer;
+    transition: all 250ms;
+}
+
+.actions > span.prev {
+    margin-left: 5px;
+}
+
+.actions > span.next {
+    margin-right: 5px;
+}
+
+.actions > span:hover {
+    color: #eee;
+}

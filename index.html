@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <link rel="stylesheet" href="carousel.css">
+</head>
+<body>
+    <section class="section" id="app">
+        <div class="columns">
+            <div class="column is-4">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-carousel">
+                            <div class="card-img">
+                                <img :src="currentImage" alt="">
+                                <div class="actions">
+                                    <span @click="prevImage" class="prev">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span @click="nextImage" class="next">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="thumbnails">
+                                <div 
+                                    v-for="(image, index) in  images"
+                                    :key="image.id"
+                                    :class="['thumbnail-image', (activeImage == index) ? 'active' : '']"
+                                    @click="activateImage(index)"
+                                >
+                                    <img :src="image.thumb">
+                                </div>
+                            </div>
+                        </div>
+                        <p>Oh hi there</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+
+        var app = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    images: [
+                        {
+                            id: '1',
+                            big: 'images/p1.jpeg',
+                            thumb: 'images/thumbs/p1.jpeg'
+                        },
+                        {
+                            id: '2',
+                            big: 'images/p2.jpeg',
+                            thumb: 'images/thumbs/p2.jpeg'
+                        },
+                        {
+                            id: '3',
+                            big: 'images/p3.jpeg',
+                            thumb: 'images/thumbs/p3.jpeg'
+                        },
+                        {
+                            id: '4',
+                            big: 'images/p4.jpeg',
+                            thumb: 'images/thumbs/p4.jpeg'
+                        }
+                    ],
+                    activeImage: 0
+                }
+            },
+            computed: {
+                currentImage() {
+                    return this.images[this.activeImage].big;
+                }
+            },
+            methods: {
+                nextImage() {
+                    var active = this.activeImage + 1;
+                    if(active >= this.images.length) {
+                        active = 0;
+                    }
+                    this.activateImage(active);
+                },
+                prevImage() {
+                    var active = this.activeImage - 1;
+                    if(active < 0) {
+                        active = this.images.length - 1;
+                    }
+                    this.activateImage(active);
+                },
+                activateImage(imageIndex) {
+                    this.activeImage = imageIndex;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
