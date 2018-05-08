@@ -48,72 +48,8 @@
     </section>
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="carousel.js"></script>
     <script>
-
-        Vue.component('carousel', {
-            template: `
-                <div class="card-carousel">
-                    <div class="card-img">
-                        <img :src="currentImage" alt="">
-                        <div class="actions">
-                            <span @click="prevImage" class="prev">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span @click="nextImage" class="next">
-                                <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="thumbnails">
-                        <div 
-                            v-for="(image, index) in  images"
-                            :key="image.id"
-                            :class="['thumbnail-image', (activeImage == index) ? 'active' : '']"
-                            @click="activateImage(index)"
-                        >
-                            <img :src="image.thumb">
-                        </div>
-                    </div>
-                </div>
-            `,
-            computed: {
-                currentImage() {
-                    return this.images[this.activeImage].big;
-                }
-            },
-            data() {
-                return {
-                    activeImage: 0
-                }
-            },
-            methods: {
-                nextImage() {
-                    var active = this.activeImage + 1;
-                    if(active >= this.images.length) {
-                        active = 0;
-                    }
-                    this.activateImage(active);
-                },
-                prevImage() {
-                    var active = this.activeImage - 1;
-                    if(active < 0) {
-                        active = this.images.length - 1;
-                    }
-                    this.activateImage(active);
-                },
-                activateImage(imageIndex) {
-                    this.activeImage = imageIndex;
-                }
-            },
-            created() {
-                if(this.startingImage 
-                    && this.startingImage >= 0
-                    && this.startingImage < this.images.length) {
-                    this.activeImage = this.startingImage;
-                }
-            },
-            props: ['startingImage', 'images']
-        })
 
         var app = new Vue({
             el: '#app',
