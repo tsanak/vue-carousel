@@ -68,6 +68,15 @@ Vue.component('carousel', {
             && this.startingImage < this.images.length) {
             this.activeImage = this.startingImage;
         }
+
+        //Check if autoSlideInterval prop was given and if it is a positive number
+        if(this.autoSlideInterval
+            && this.autoSlideInterval > 0) {
+            var self = this;
+            window.setInterval(function() {
+                self.nextImage()
+            }, this.autoSlideInterval);
+        } 
     },
-    props: ['startingImage', 'images']
+    props: ['startingImage', 'images', 'autoSlideInterval']
 })
