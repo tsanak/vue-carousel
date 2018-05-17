@@ -51,7 +51,9 @@ Vue.component('carousel', {
             //Hold the time left until changing to the next image
             timeLeft: 0,
             //Hold the interval so we can clear it when needed
-            timerInterval: null
+            timerInterval: null,
+            //Every 10ms decrease the timeLeft
+            countdownInterval: 10
         }
     },
     methods: {
@@ -105,11 +107,11 @@ Vue.component('carousel', {
             if(!this.showProgressBar) return;
             var self = this;
             this.timerInterval = setInterval(function() {
-                self.timeLeft -= 10;
+                self.timeLeft -= self.countdownInterval;
                 if(self.timeLeft <= 0) {
                     self.timeLeft = self.autoSlideInterval;
                 }
-            }, 10);
+            }, this.countdownInterval);
         }
     },
     created() {
@@ -122,7 +124,7 @@ Vue.component('carousel', {
 
         //Check if autoSlideInterval prop was given and if it is a positive number
         if(this.autoSlideInterval
-            && this.autoSlideInterval > 0) {
+            && this.autoSlideInterval > this.countdownInterval) {
             //Start the timer to go to the next image
             this.startTimer(this.autoSlideInterval);
             this.timeLeft = this.autoSlideInterval;
