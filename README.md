@@ -60,3 +60,9 @@ You can see an example in both index.html and component.html
 ```
 
 You can also find a post I've written explaining the process on [dev.to](https://dev.to/tsanak/building-an-image-carousel-with-vuejs--cjp "Vue carousel post")
+
+## :memo: Features
+If you want a new feature to be implemented you can create an issue with the label Feature.
+
+## Contributing
+Pull requests are more than welcome! :smiley:
