@@ -28,12 +28,42 @@
 ```
 
 ## Example usage
+## Method 1
 You can see an example in both index.html and component.html
 ### Steps
 1. include vue.js
 2. include the carousel.js
 3. create the images array
 4. reference the carousel in your html 
+
+## Method 2
+Using the component with vue cli as a single file component
+
+> This method does **not** use Bulma
+### Note 
+To reference the Carousel with another name 
+- change the name of the file (Carousel.vue) to whatever you want e.g. **MyCarousel.vue**
+- change the `name` attribute inside the file to the previously given name e.g. **MyCarousel**
+### Steps
+1. Download Carousel.vue
+2. Copy the file to your project
+3. create the images array
+4. ```javascript
+    // import the Carousel.vue 
+    import Carousel from 'path/to/Carousel.vue'
+    <script>
+        export default {
+            name: 'OtherComponent',
+            // Include the Carousel here
+            components: {
+                Carousel
+            }
+            ...
+        }
+    </script>
+    ```
+5. reference it in your template as shown in the examples below
+
 ```html
 <!-- Example -->
 <carousel
